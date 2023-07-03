@@ -28,10 +28,12 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          # ports:
-          #   - name: http
-          #     containerPort: {{ .Values.service.port }}
-          #     protocol: TCP
+          {{- if .Values.service }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          {{- end }}
           env:
             - name: DATABASE_URL
               valueFrom:
@@ -39,15 +41,15 @@ spec:
                   name: makima-secret
                   key: db-url
 {{ toYaml $.Values.variables.env | indent 12 }}
-          {{- if not .Values.livenessProbe }}
+          {{- if .Values.livenessProbe }}
           livenessProbe:
-            {{- toYaml $.Values.livenessProbe | indent 12 }}
+{{ toYaml $.Values.livenessProbe | indent 12 }}
           {{- end }}
-          {{- if not .Values.readinessProbe }}
+          {{- if .Values.readinessProbe }}
           readinessProbe:
-            {{- toYaml $.Values.readinessProbe | indent 12 }}
+{{ toYaml $.Values.readinessProbe | indent 12 }}
           {{- end }}
-          {{- if not .Values.resources }}
+          {{- if .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+{{ toYaml .Values.resources | nindent 12 }}
           {{- end }}

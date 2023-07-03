@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    pv.kubernetes.io/bound-by-controller: 'yes'
+  creationTimestamp: '2023-07-03T19:13:42Z'
+  finalizers:
+    - kubernetes.io/pv-protection
+  managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:pv.kubernetes.io/bound-by-controller: {}
+        f:spec:
+          f:claimRef:
+            .: {}
+            f:apiVersion: {}
+            f:kind: {}
+            f:name: {}
+            f:namespace: {}
+            f:resourceVersion: {}
+            f:uid: {}
+      manager: k3s
+      operation: Update
+      time: '2023-07-03T19:13:51Z'
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:phase: {}
+      manager: k3s
+      operation: Update
+      subresource: status
+      time: '2023-07-03T19:13:51Z'
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:spec:
+          f:accessModes: {}
+          f:capacity:
+            .: {}
+            f:storage: {}
+          f:hostPath:
+            .: {}
+            f:path: {}
+            f:type: {}
+          f:persistentVolumeReclaimPolicy: {}
+          f:storageClassName: {}
+          f:volumeMode: {}
+      manager: rancher
+      operation: Update
+      time: '2023-07-03T19:15:09Z'
+  name: data
+  resourceVersion: '119906'
+  uid: 22cb4417-6152-4cb3-8af1-9eb7d04262ea
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 53687091200m
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: data-rabbitmq-0
+    namespace: default
+    resourceVersion: '119333'
+    uid: 03740461-abe2-4abc-be4b-9b2a2a48cf20
+  hostPath:
+    path: /k8s-volume
+    type: DirectoryOrCreate
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  volumeMode: Filesystem
+status:
+  phase: Bound
