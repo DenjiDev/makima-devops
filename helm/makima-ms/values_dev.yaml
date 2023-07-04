@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: qzzdocker24/makima-sender
+  repository: qzzdocker24/makima-engine
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
@@ -96,5 +96,5 @@ variables:
   env: 
     - name: RABBIT_URL
       value: "amqp://guest:guest@rabbitmq.rabbits.svc.cluster.local:5672"
-    - name: BOT_NUMBER
-      value: "557388015449"
+    # - name: BOT_NUMBER
+    #   value: "557388015449"
