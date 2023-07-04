@@ -8,7 +8,7 @@ image:
   repository: qzzdocker24/makima-listener
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "73e661f6932094e4af43cb0cbd96aee2eb7fdda0"
 
 imagePullSecrets: []
 nameOverride: ""
